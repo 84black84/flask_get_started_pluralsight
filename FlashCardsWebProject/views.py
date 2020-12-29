@@ -1,11 +1,6 @@
-from flask import Flask, render_template, abort, jsonify, request, redirect, url_for
-from model import db, save_db
-
-# Flask constructor
-# Creates a global Flask application object
-# The name of the application, this '__name__' variable contains the name of the current module which
-# in our case is the name of the current python file, which is 'flashcards'.
-app = Flask(__name__) 
+from flask import render_template, abort, request, redirect, url_for
+from FlashCardsWebProject import app
+from FlashCardsWebProject.model import db, save_db
 
 # A view function. '@' we use to decorate our welcome function, by assigning a URL to our function
 @app.route("/")
@@ -59,19 +54,5 @@ def remove_card(index):
             return redirect(url_for('welcome'))
         else:
             return render_template("remove_card.html", card=db[index])
-    except IndexError:
-        abort(404)
-
-## ----- API Methods -----
-
-@app.route("/api/card/")
-def api_card_list():
-    return jsonify(db)
-
-
-@app.route('/api/card/<int:index>')
-def api_card_detail(index):
-    try:
-        return db[index]
     except IndexError:
         abort(404)

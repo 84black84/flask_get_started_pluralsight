@@ -10,13 +10,16 @@ https://flask-sqlalchemy.palletsprojects.com/.
 """
 
 import json
+import os.path
+
+filePath = os.path.join("FlashCardsWebProject","flashcards_db.json")
 
 def load_db():
-    with open("flashcards_db.json", encoding="utf8") as f:
+    with open(filePath, encoding="utf8") as f:
         return json.load(f)
 
 def save_db():
-    with open("flashcards_db.json", 'w') as f:
+    with open(filePath, 'w') as f:
         return json.dump(db, f)
 
 db = load_db()
