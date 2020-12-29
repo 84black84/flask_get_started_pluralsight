@@ -18,3 +18,10 @@ def welcome():
 def card_view():
     card = db[0]
     return render_template("card.html", card=card)
+
+counter = 0
+@app.route("/count_views")
+def count_views():
+    global counter #We use global, because the variable is declared outside the local scope 
+    counter += 1
+    return "This page was servers " + str(counter) + " times." 
