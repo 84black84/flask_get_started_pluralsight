@@ -2,6 +2,7 @@
 from os import environ
 from FlashCardsWebProject import app
 
+
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
     try:
